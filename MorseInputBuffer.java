@@ -1,6 +1,11 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class MorseInputBuffer extends InputBuffer {
+
+    private String previousLine = "";
+    private String currentLine = "";
 
     public MorseInputBuffer(String inputFile) {
         super(inputFile);
@@ -8,16 +13,32 @@ public class MorseInputBuffer extends InputBuffer {
 
     public MsgChar getChar() {
 
+        previousLine = currentLine;
 
+        Scanner scanner = this.getReader();
 
-        return new EnglishChar("a");
+        MorseChar myChar = new MorseChar(scanner.nextLine());
+
+        currentLine = myChar.toString();
+
+        return myChar;
     }
 
     public boolean isEndOfWord() {
-        return true;
+
+        if (currentLine.isEmpty()) {
+            return true;
+        }
+
+        return false;
     }
 
     public boolean isEndOfSentence() {
-        return true;
+
+        if (currentLine.equals(".-.-.-") || currentLine.equals("..--..")) {
+            return true;
+        }
+
+        return false;
     }
 }

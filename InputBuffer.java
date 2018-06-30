@@ -2,7 +2,6 @@ package com.company;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 // Reads the current message that is being translated from FileInputStream

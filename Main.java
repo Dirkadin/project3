@@ -6,8 +6,5 @@ public class Main {
 	{
 		Translator translator = new Translator("test.mor");
 		translator.translate();
-
-		Translator translator1 = new Translator("text.txt");
-		translator1.translate();
 	}
 }

@@ -8,7 +8,7 @@ public abstract class MsgChar {
     }
 
     public String getChar() {
-        return "";
+        return this.charValue;
     }
 
     public abstract String convert();

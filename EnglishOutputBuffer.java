@@ -7,7 +7,7 @@ public class EnglishOutputBuffer extends OutputBuffer {
     }
 
     public void putChar(String charToWrite) {
-
+        System.out.println(charToWrite);
     }
 
 

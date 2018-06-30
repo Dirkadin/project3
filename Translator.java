@@ -43,12 +43,9 @@ public class Translator {
     }
 
     public void translate() {
-        // Read current MsgChar from InputBuffer using convert method
-        Scanner scanner = input.getReader();
+        do {
+            output.putChar(input.getChar().convert());
+        } while (input.isEndOfSentence());
 
-
-        // Then send to OutputBuffer
-        // When end of word or sentence is found call the opposite mark end
-        // Sent to morse code player to play
     }
 }
