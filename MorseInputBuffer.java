@@ -6,6 +6,7 @@ public class MorseInputBuffer extends InputBuffer {
 
     private String previousLine = "";
     private String currentLine = "";
+    private Scanner scanner = this.getReader();
 
     public MorseInputBuffer(String inputFile) {
         super(inputFile);
@@ -15,9 +16,7 @@ public class MorseInputBuffer extends InputBuffer {
 
         previousLine = currentLine;
 
-        Scanner scanner = this.getReader();
-
-        MorseChar myChar = new MorseChar(scanner.nextLine());
+        MorseChar myChar = new MorseChar(scanner.nextLine()); // crash
 
         currentLine = myChar.toString();
 
@@ -25,10 +24,6 @@ public class MorseInputBuffer extends InputBuffer {
     }
 
     public boolean isEndOfWord() {
-
-        if (currentLine.isEmpty()) {
-            return true;
-        }
 
         return false;
     }

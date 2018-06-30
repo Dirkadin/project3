@@ -25,7 +25,12 @@ public abstract class InputBuffer {
     }
 
     public boolean endOfBuffer() {
-        return true;
+        if (reader.hasNext()) {
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     public Scanner getReader() {

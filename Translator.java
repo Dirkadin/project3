@@ -45,7 +45,7 @@ public class Translator {
     public void translate() {
         do {
             output.putChar(input.getChar().convert());
-        } while (input.isEndOfSentence());
+        } while (!input.endOfBuffer());
 
     }
 }
