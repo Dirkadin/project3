@@ -6,17 +6,18 @@ public class MorseInputBuffer extends InputBuffer {
 
     private String previousLine = "";
     private String currentLine = "";
-    private Scanner scanner = this.getReader();
-
+//    private Scanner scanner = this.getReader();
     public MorseInputBuffer(String inputFile) {
         super(inputFile);
     }
 
     public MsgChar getChar() {
 
+        Scanner scanner = this.getReader();
+
         previousLine = currentLine;
 
-        MorseChar myChar = new MorseChar(scanner.nextLine()); // crash
+        MorseChar myChar = new MorseChar(scanner.nextLine());
 
         currentLine = myChar.toString();
 

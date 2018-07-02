@@ -1,13 +1,19 @@
 package com.company;
 
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+
 public class EnglishOutputBuffer extends OutputBuffer {
+
+    private FileOutputStream outputStream = null;
+    private PrintWriter outFS = null;
 
     public EnglishOutputBuffer(String outputFile) {
         super(outputFile);
     }
 
     public void putChar(String charToWrite) {
-        System.out.println(charToWrite);
+        System.out.print(charToWrite);
     }
 
 

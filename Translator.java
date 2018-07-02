@@ -16,13 +16,12 @@ public class Translator {
         // Determining if we are translating to morse or not
         int fileNameLength = inputFile.length();
         String extension = inputFile.substring(fileNameLength - 3);
-        System.out.println(extension);
         switch (extension) {
             case "mor":
                 System.out.println("Translating to English");
                 toMorse = false;
                 break;
-            case "txt":
+            case "eng":
                 System.out.println("Translating to Morse");
                 toMorse = true;
                 break;
@@ -35,7 +34,6 @@ public class Translator {
         if (toMorse) {
             input = new EnglishInputBuffer(inputFile);
             output = new MorseOutputBuffer("output.mor");
-            System.out.println("Got here");
         } else if (!toMorse) {
             input = new MorseInputBuffer(inputFile);
             output = new EnglishOutputBuffer("output.txt");
@@ -47,5 +45,7 @@ public class Translator {
             output.putChar(input.getChar().convert());
         } while (!input.endOfBuffer());
 
+        input.close();
+        output.close();
     }
 }
