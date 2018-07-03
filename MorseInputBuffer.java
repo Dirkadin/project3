@@ -6,7 +6,7 @@ public class MorseInputBuffer extends InputBuffer {
 
     private String previousLine = "";
     private String currentLine = "";
-//    private Scanner scanner = this.getReader();
+
     public MorseInputBuffer(String inputFile) {
         super(inputFile);
     }
@@ -25,16 +25,10 @@ public class MorseInputBuffer extends InputBuffer {
     }
 
     public boolean isEndOfWord() {
-
-        return false;
+        return currentLine.equals(" ");
     }
 
     public boolean isEndOfSentence() {
-
-        if (currentLine.equals(".-.-.-") || currentLine.equals("..--..")) {
-            return true;
-        }
-
-        return false;
+        return previousLine.equals(".-.-.-") || previousLine.equals("..--..") && currentLine.equals(System.lineSeparator());
     }
 }

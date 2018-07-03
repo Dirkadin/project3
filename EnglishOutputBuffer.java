@@ -13,16 +13,20 @@ public class EnglishOutputBuffer extends OutputBuffer {
     }
 
     public void putChar(String charToWrite) {
+
         System.out.print(charToWrite);
     }
 
 
     // Mark methods will handle formatting of the output.
     public void markEndOfWord() {
+        // space character
+        putChar(" ");
 
     }
 
     public void markEndOfSentence() {
-
+        // new line character
+        putChar(System.lineSeparator());
     }
 }
