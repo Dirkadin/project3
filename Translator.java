@@ -1,12 +1,18 @@
 package com.company;
 
-import java.util.Scanner;
-
-// Coordinates the translation of messages from one language to the other
+/**
+ * This class coordinates the translation of messages.
+ */
 public class Translator {
 
+    /**
+     * Indicates if we are translating to or from morse.
+     */
     private boolean toMorse;
 
+    /**
+     * Input and output streams for processing data.
+     */
     private InputBuffer input;
     private OutputBuffer output;
 
@@ -63,7 +69,6 @@ public class Translator {
                 output.putChar(stringInput);
             }
 
-//            output.putChar(input.getChar().convert());
         } while (!input.endOfBuffer());
 
         input.close();
