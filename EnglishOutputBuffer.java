@@ -23,28 +23,21 @@ public class EnglishOutputBuffer extends OutputBuffer {
      * @param charToWrite Character to write to the file.
      */
     public void putChar(String charToWrite) {
-
+        this.getWriter().print(charToWrite);
         System.out.print(charToWrite);
     }
-
-
-    // Mark methods will handle formatting of the output.
-
 
     /**
      * Provides the formatting for outputting the end of a word to the file.
      */
     public void markEndOfWord() {
-        // space character
         putChar(" ");
-
     }
 
     /**
      * Provides the formatting for outputting the end of a sentence to the file.
      */
     public void markEndOfSentence() {
-        // new line character
         putChar(System.lineSeparator());
     }
 }
