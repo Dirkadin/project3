@@ -34,6 +34,6 @@ public class MorseChar extends MsgChar{
                 return " ";
             }
         }
-        return "---Broken in convert---";
+        return "---Broken in English convert---";
     }
 }

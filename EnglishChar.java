@@ -28,6 +28,22 @@ public class EnglishChar extends MsgChar {
      */
     public String convert() {
 
-        return "";
+        String myChar = this.getChar();
+        if (myChar.length() > 1) {
+            String[] tempArray = myChar.split("");
+            for (int i = 0; i < englishChars.length; i++) {
+                if (tempArray[0].equals(englishChars[i])) {
+                    return morseChars[i];
+                }
+            }
+
+        } else {
+            for (int j = 0; j < englishChars.length; j++) {
+                if (myChar.equals(englishChars[j])) {
+                    return morseChars[j];
+                }
+            }
+        }
+        return "---Broken in morse convert---";
     }
 }

@@ -34,17 +34,27 @@ public class EnglishInputBuffer extends InputBuffer {
 
         if (currentToken == null) {
             currentToken = scanner.next();
-        } else if (currentPosition < currentToken.length()) {
-            // I can't believe this works - I guess this is casting the char to a string when we append it?
+        }
+
+        // I'm having trouble here printing a space when I need to.
+        if (currentPosition < currentToken.length()) {
+            if (this.isEndOfWord()) {
+                String toReturn = "" + currentToken.toCharArray()[currentPosition] + " ";
+                currentPosition ++;
+                return new EnglishChar(toReturn);
+            } else if (this.isEndOfSentence() && currentToken.length() - 1 == currentPosition) {
+                String toReturn = "" + currentToken.toCharArray()[currentPosition] + "\n";
+                currentPosition ++;
+                return new EnglishChar(toReturn);
+            }
+            String toReturn = "" + currentToken.toCharArray()[currentPosition];
             currentPosition ++;
-            return new EnglishChar("" + currentToken.toCharArray()[currentPosition]);
+            return new EnglishChar(toReturn);
         } else {
             currentToken = scanner.next();
             currentPosition = 0;
             return new EnglishChar("" + currentToken.toCharArray()[currentPosition]);
         }
-
-        return new EnglishChar("a");
     }
 
     /**
@@ -53,7 +63,7 @@ public class EnglishInputBuffer extends InputBuffer {
      * @return Returns true if we are at the end of a word.
      */
     public boolean isEndOfWord() {
-        if (currentPosition == currentToken.length()) {
+        if (currentPosition == currentToken.length() - 1) {
             return true;
         } else {
             return false;

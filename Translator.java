@@ -48,7 +48,7 @@ public class Translator {
             output = new MorseOutputBuffer("output.mor");
         } else if (!toMorse) {
             input = new MorseInputBuffer(inputFile);
-            output = new EnglishOutputBuffer("test.eng");
+            output = new EnglishOutputBuffer("output.eng");
         }
     }
 
@@ -59,9 +59,9 @@ public class Translator {
         do {
             String stringInput = input.getChar().convert();
 
-            if (stringInput.equals(" ")) {
+            if (input.isEndOfSentence() ) {
                 output.markEndOfWord();
-            } else if (stringInput.equals(System.lineSeparator())) {
+            } else if (input.isEndOfSentence()) {
                 output.markEndOfSentence();
             } else {
                 output.putChar(stringInput);
