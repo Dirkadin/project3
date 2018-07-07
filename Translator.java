@@ -56,6 +56,7 @@ public class Translator {
      * Handles the translation of files.  Input and output.
      */
     public void translate() {
+
         do {
             String stringInput = input.getChar().convert();
 
@@ -66,6 +67,10 @@ public class Translator {
                 output.markEndOfSentence();
             } else {
                 output.putChar(stringInput);
+                if (toMorse) {
+                    MorseCodePlayer.play(stringInput);
+                }
+
             }
 
         } while (!input.endOfBuffer());

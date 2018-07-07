@@ -35,17 +35,10 @@ public class MorseChar extends MsgChar{
             }
         }
 
+        if (strToConvert.equals("")) {
+            return "";
+        }
 
-
-
-//
-// for (int i = 0; i < morseChars.length; i++) {
-//            if (this.getChar().equals(morseChars[i])) {
-//                return englishChars[i];
-//            } else if (this.getChar().isEmpty()) {
-//                return " ";
-//            }
-//        }
         return "---Broken in English convert---";
     }
 }
