@@ -27,13 +27,25 @@ public class MorseChar extends MsgChar{
      */
     public String convert() {
 
+        String strToConvert = this.getChar();
+
         for (int i = 0; i < morseChars.length; i++) {
-            if (this.getChar().equals(morseChars[i])) {
+            if (strToConvert.equals(morseChars[i])) {
                 return englishChars[i];
-            } else if (this.getChar().equals("")) {
-                return " ";
             }
         }
+
+
+
+
+//
+// for (int i = 0; i < morseChars.length; i++) {
+//            if (this.getChar().equals(morseChars[i])) {
+//                return englishChars[i];
+//            } else if (this.getChar().isEmpty()) {
+//                return " ";
+//            }
+//        }
         return "---Broken in English convert---";
     }
 }

@@ -11,8 +11,9 @@ public class EnglishInputBuffer extends InputBuffer {
     /**
      * Variables to store the token received and which position we are translating.
      */
-    private String currentToken = null;
+    private String currentToken = "";
     private int currentPosition = 0;
+    private boolean resetToken = true;
 
     /**
      * Constructor for getting English as input.
@@ -32,29 +33,24 @@ public class EnglishInputBuffer extends InputBuffer {
 
         Scanner scanner = this.getReader();
 
-        if (currentToken == null) {
-            currentToken = scanner.next();
-        }
-
-        // I'm having trouble here printing a space when I need to.
-        if (currentPosition < currentToken.length()) {
-            if (this.isEndOfWord()) {
-                String toReturn = "" + currentToken.toCharArray()[currentPosition] + " ";
-                currentPosition ++;
-                return new EnglishChar(toReturn);
-            } else if (this.isEndOfSentence() && currentToken.length() - 1 == currentPosition) {
-                String toReturn = "" + currentToken.toCharArray()[currentPosition] + "\n";
-                currentPosition ++;
-                return new EnglishChar(toReturn);
-            }
-            String toReturn = "" + currentToken.toCharArray()[currentPosition];
-            currentPosition ++;
-            return new EnglishChar(toReturn);
-        } else {
+        if (resetToken) {
             currentToken = scanner.next();
             currentPosition = 0;
-            return new EnglishChar("" + currentToken.toCharArray()[currentPosition]);
+            resetToken = false;
         }
+
+        if (currentToken.length() - 1 == currentPosition) {
+            String[] toReturnArray = currentToken.split("");
+            resetToken = true;
+            return new EnglishChar(toReturnArray[currentPosition]);
+        }
+
+        String[] toReturnArray = currentToken.split("");
+        String toReturn = toReturnArray[currentPosition];
+
+        currentPosition ++;
+
+        return new EnglishChar(toReturn);
     }
 
     /**
@@ -63,11 +59,7 @@ public class EnglishInputBuffer extends InputBuffer {
      * @return Returns true if we are at the end of a word.
      */
     public boolean isEndOfWord() {
-        if (currentPosition == currentToken.length() - 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return resetToken;
     }
 
     /**
@@ -76,14 +68,11 @@ public class EnglishInputBuffer extends InputBuffer {
      * @return Returns true if we are at the end of a sentence.
      */
     public boolean isEndOfSentence() {
+        String[] toReturnArray = currentToken.split("");
 
-        String endChar = "" + currentToken.toCharArray()[currentToken.length() - 1];
-
-        if (endChar.equals(".") || endChar.equals("?")) {
-            return true;
-        } else {
-            return false;
+        if (toReturnArray[currentToken.length() - 1].equals(".") || toReturnArray[currentToken.length() - 1].equals("?")) {
+            return currentToken.length() - 1 == currentPosition;
         }
-
+        return false;
     }
 }

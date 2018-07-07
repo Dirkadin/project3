@@ -22,21 +22,33 @@ public class MorseOutputBuffer extends OutputBuffer {
      * @param charToWrite Character to write to the file.
      */
     public void putChar(String charToWrite) {
-        this.getWriter().print(charToWrite);
-        System.out.print(charToWrite);
+        if (charToWrite.equals(System.lineSeparator())) {
+            this.getWriter().print(System.lineSeparator());
+            System.out.print(System.lineSeparator());
+        } else if (charToWrite.equals(System.lineSeparator() + System.lineSeparator())) {
+            this.getWriter().print(System.lineSeparator() + System.lineSeparator());
+            System.out.print(System.lineSeparator() + System.lineSeparator());
+        } else {
+            this.getWriter().print(charToWrite);
+            this.getWriter().print(System.lineSeparator());
+            System.out.print(charToWrite);
+            System.out.print(System.lineSeparator());
+        }
+
+
     }
 
     /**
      * Provides the formatting for outputting the end of a word to the file.
      */
     public void markEndOfWord() {
-        putChar(" ");
+        putChar(System.lineSeparator());
     }
 
     /**
      * Provides the formatting for outputting the end of a sentence to the file.
      */
     public void markEndOfSentence() {
-        putChar(System.lineSeparator());
+        putChar(System.lineSeparator() + System.lineSeparator());
     }
 }

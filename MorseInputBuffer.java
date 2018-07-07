@@ -31,12 +31,9 @@ public class MorseInputBuffer extends InputBuffer {
     public MsgChar getChar() {
 
         Scanner scanner = this.getReader();
-
         previousLine = currentLine;
-
         MorseChar myChar = new MorseChar(scanner.nextLine());
-
-        currentLine = myChar.toString();
+        currentLine = myChar.getChar();
 
         return myChar;
     }
@@ -47,7 +44,7 @@ public class MorseInputBuffer extends InputBuffer {
      * @return Returns true if we are at the end of a word.
      */
     public boolean isEndOfWord() {
-        return currentLine.equals(" ");
+        return currentLine.isEmpty() && !previousLine.isEmpty();
     }
 
     /**
@@ -56,6 +53,6 @@ public class MorseInputBuffer extends InputBuffer {
      * @return Returns true if we are at the end of a sentence.
      */
     public boolean isEndOfSentence() {
-        return previousLine.equals(".-.-.-") || previousLine.equals("..--..") && currentLine.equals(System.lineSeparator());
+        return currentLine.isEmpty() && previousLine.isEmpty();
     }
 }
